@@ -23,3 +23,13 @@
 .hidden {
     display: none;
 }
+
+.questionContent {
+    margin: auto;
+    border: solid black;
+    padding: 200px;
+}
+
+.qtn-title {
+    font-size: 20px;
+}
