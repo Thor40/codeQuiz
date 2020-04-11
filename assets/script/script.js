@@ -45,35 +45,36 @@ function countdown() {
 
 var createQuestions = function() {
     var questionTitleEl = document.createElement("div");
-    counter = questionChoices[questionIdCounter]
-    
-    for (var i = 0; i < questionChoices.length; i++) {
-        questionTitleEl.innerHTML = "<h1 class='qtn-title'>" + counter + "</h1>";
-        questionIdCounter ++;
-    };
+    question = questionChoices[questionIdCounter]
+    questionTitleEl.innerHTML = "<h1 class='qtn-title'>" + question + "</h1>";
+
     qtnContent.appendChild(questionTitleEl);
 
 
     var btn1 = document.createElement('button');
     btn1.setAttribute("id", "correctA");
-    btnCounter = answerChoices[0];
+    btnCounter = answerChoices[answerIdCounter];
     btn1.innerHTML = btnCounter;
-    qtnContent.appendChild(btn1);
+    if (answerIdCounter < 4) {
+        qtnContent.appendChild(btn1);
+        answerIdCounter++;
+    }
+    
 
-    var btn2 = document.createElement('button');
-    btnCounter = answerChoices[1];
-    btn2.innerHTML = btnCounter;
-    qtnContent.appendChild(btn2);
+    // var btn2 = document.createElement('button');
+    // btnCounter = answerChoices[1];
+    // btn2.innerHTML = btnCounter;
+    // qtnContent.appendChild(btn2);
 
-    var btn3 = document.createElement('button');
-    btnCounter = answerChoices[2];
-    btn3.innerHTML = btnCounter;
-    qtnContent.appendChild(btn3);
+    // var btn3 = document.createElement('button');
+    // btnCounter = answerChoices[2];
+    // btn3.innerHTML = btnCounter;
+    // qtnContent.appendChild(btn3);
 
-    var btn4 = document.createElement('button');
-    btnCounter = answerChoices[3];
-    btn4.innerHTML = btnCounter;
-    qtnContent.appendChild(btn4);
+    // var btn4 = document.createElement('button');
+    // btnCounter = answerChoices[3];
+    // btn4.innerHTML = btnCounter;
+    // qtnContent.appendChild(btn4);
 
 document.getElementById('correctA').addEventListener("click", answered)
 
@@ -82,6 +83,8 @@ document.getElementById('correctA').addEventListener("click", answered)
 
 var answered = function () {
     alert("Correct!");
+    questionIdCounter++;
+    createQuestions();
 };
 
 
