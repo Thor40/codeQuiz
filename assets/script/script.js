@@ -12,9 +12,13 @@ game is over:
     save initials and score;
 SHOW HIGH SCORE;
 */
-
+var questionContent = document.querySelector("#question-content");
+var btnStart = document.querySelector("#btn-start");
+var welcomeContent = document.querySelector("#welcome-container");
+var questionIdCounter = 0;
 var timeLeft = 0;
 var timerEl = document.getElementById("timer");
+
 
 function countdown() {
     timeLeft = 5;
@@ -28,15 +32,25 @@ function countdown() {
             clearInterval(timeInterval);
         }
     }, 1000);
-    console.log(timeLeft);
-}
+    document.getElementById("welcome-h1").style.display = 'none';
+    document.getElementById("welcome-h2").style.display = 'none';
+    document.getElementById("btn-start").style.display = 'none';
+};
 
-//start button
-document.getElementById("btnStart").addEventListener("click", countdown());
+
+
+// var createQuestions = function() {
+//     //create question
+//     var question = document.createElement('h1');
+//     question.textContent = "Question One!";
+//     question.className = "qtn-item";
+//     question.setAttribute("qtn-id", questionIdCounter)
+//     questionContent.appendChild(question);
+// };
+
 
 // create all elements
-// var body = document.body;
-// var infoEl = document.createElement('div');
+//var infoEl = document.createElement('div');
 // var listEl = document.createElement('ol');
 // var btnS = document.createElement('button')
 // var btn1 = document.createElement('button');
@@ -52,3 +66,4 @@ document.getElementById("btnStart").addEventListener("click", countdown());
 // set style attributes of all elements
 //infoEl.setAttribute('style', 'margin:auto; border:solid; padding-top:300px; padding-bottom:0px;' );
 
+document.getElementById("btn-start").addEventListener("click", countdown);

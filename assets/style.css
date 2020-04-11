@@ -14,8 +14,12 @@
     align-items: center;
 }
 
-.btn-container {
+.btnStartContainer {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+}
+
+.hidden {
+    display: none;
 }
