@@ -1,0 +1,21 @@
+.score {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    font-size: 20px;
+    text-align: left;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.btn-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
