@@ -5,17 +5,21 @@ var welcome = document.getElementById('welcome-container')
 var questionEl = document.getElementById('question')
 const answerButtonEl = document.getElementById('btn-answer')
 var timerEl = document.getElementById("timer");
-var showScore = document.getElementById('btn-score')
+var scoreShowBtn = document.getElementById('btn-score')
 var scoreForm = document.getElementById('score-form')
+var playerScore = document.getElementById('highScore')
+var finalHighScores = document.getElementById('btn-highScore')
 var countCorrectAnswers = 0;
+var savedScoresArr = [];
 
+finalHighScores.addEventListener('click', savedScores)
 startButton.addEventListener('click', startGame)
 startButton.addEventListener('click', countdown)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
-showScore.addEventListener('click', highScore)
+scoreShowBtn.addEventListener('click', highScore)
 
 //timer
 function countdown() {
@@ -25,7 +29,7 @@ function countdown() {
         timerEl.textContent = timeLeft;
         timeLeft --;
 
-        if (timeLeft === 0 || shuffleQuestions.length > currentQuestionIndex + 1) {
+        if (timeLeft === 0) {
             timerEl.textContent = "DONE"
             clearInterval(timeInterval);
         }
@@ -40,6 +44,7 @@ function startGame() {
     // hiding start button
     startButton.classList.add('hide')
     welcome.classList.add('hide')
+    playerScore.classList.add('hide')
     //randomly shuffle order of questions
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     // index of questions, starting on 0
@@ -106,8 +111,8 @@ function selectAnswer (event) {
         nextButton.classList.remove('hide')
         // allow restart of game
     } else {
-        showScore.classList.remove('hide')
-        showScore.innerText = "Show Score!"
+        scoreShowBtn.classList.remove('hide')
+        scoreShowBtn.innerText = "Show Score!"
         questionContainerEl.classList.add('hide')
     }
     if (selectedButton.dataset = correct) {
@@ -134,35 +139,67 @@ function clearStatusClass(element) {
 function highScore() {
     localStorage.getItem(countCorrectAnswers)
     questionContainerEl.classList.remove('hide')
-    showScore.classList.add('hide')
+    scoreShowBtn.classList.add('hide')
+    playerScore.classList.remove('hide')
     resetState()
-    var scoreInput = window.prompt("Please add initials!")
-    questionEl.innerText.add(scoreInput[countCorrectAnswers])
+
+    savedScoresArr.push(prompt("Enter your Initials to save!"));
+
+    document.getElementById('question').innerHTML = ("<h2>Your Score!</h2>")
+    document.getElementById('highScore').innerHTML = savedScoresArr + ": score " + countCorrectAnswers + "."
+    savedScoresArr.push(countCorrectAnswers)
+    localStorage.setItem('id', savedScoresArr)
+    finalHighScores.classList.remove('hide')
+    document.getElementById('btn-highScore').innerHTML = ("Show High Scores")
 }
+
+function savedScores() {
+    resetState()
+    finalHighScores.classList.add('hide')
+    localStorage.getItem(savedScoresArr)
+    document.getElementById('question').innerHTML = ("<h2>High Scores</h2>")
+    document.getElementById('highScore').innerHTML = savedScoresArr;
+
+
+}
+
 
 // questions string and answers array
 var questions = [
     {
-        question: 'What is 2 + 2',
+        question: 'Commonly used data types DO NOT include:',
         answers: [
-            { text: '4', correct: true, wrong: false},
-            { text: '2', correct: false, wrong: true },
-            { text: '7', correct: false, wrong: true },
-            { text: '5', correct: false, wrong: true }
+            { text: 'strings', correct: false, wrong: false},
+            { text: 'booleans', correct: false, wrong: true },
+            { text: 'alerts', correct: true, wrong: false },
+            { text: 'numbers', correct: false, wrong: true }
         ]
     },
     {
-        question: 'What is 4 + 3',
+        question: 'Arrays in JavaScript can be stored in:',
         answers: [
-            { text: '7', correct: true },
-            { text: '56', correct: false }
+            { text: 'booleans', correct: false, wrong: true },
+            { text: 'other arrays', correct: false, wrong: true },
+            { text: 'numbers and strings', correct: false, wrong: true },
+            { text: 'all of the above', correct: true, wrong: false }
         ]
     },
     {
-        question: 'What color is the sky',
+        question: 'Condition in an if/else statement is enclosed with:',
         answers: [
-            { text: 'blue', correct: true },
-            { text: 'red', correct: false }
+            { text: 'sparenthesis', correct: true, wrong: false },
+            { text: 'curly brackets', correct: false, wrong: true },
+            { text: 'quotes', correct: false, wrong: true },
+            { text: 'square brackets', correct: false, wrong: true }
+        ]
+    },
+    {
+        question: 'A useful tool that can be used during the devlopment and debugging for printing content to the debugger is:',
+        answers: [
+            { text: 'for loops', correct: false, wrong: true },
+            { text: 'CSS', correct: false, wrong: true },
+            { text: 'console.log', correct: true, wrong: false },
+            { text: 'terminal/bash', correct: false, wrong: true }
         ]
     }
 ]
