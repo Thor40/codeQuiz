@@ -9,6 +9,7 @@ var scoreShowBtn = document.getElementById('btn-score')
 var scoreForm = document.getElementById('score-form')
 var playerScore = document.getElementById('highScore')
 var finalHighScores = document.getElementById('btn-highScore')
+var scoreCounter = document.getElementById('right-answers')
 var countCorrectAnswers = 0;
 var savedScoresArr = [];
 
@@ -119,6 +120,7 @@ function selectAnswer (event) {
         countCorrectAnswers++;
     }
     localStorage.setItem('score', countCorrectAnswers);
+    localStorage.getItem(countCorrectAnswers)
     document.getElementById('right-answers').innerHTML = countCorrectAnswers;
 }
 
@@ -164,8 +166,6 @@ function savedScores() {
 
 }
 
-
-// questions string and answers array
 var questions = [
     {
         question: 'Commonly used data types DO NOT include:',
