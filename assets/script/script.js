@@ -109,7 +109,7 @@ function selectAnswer (event) {
     //if we are at the last question, hide next to stop question cycling
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
-        // allow restart of game
+        // show score button
     } else {
         scoreShowBtn.classList.remove('hide')
         scoreShowBtn.innerText = "Show Score!"
@@ -157,8 +157,9 @@ function savedScores() {
     resetState()
     finalHighScores.classList.add('hide')
     localStorage.getItem(savedScoresArr)
+    objScore = JSON.parse(savedScoresArr)
     document.getElementById('question').innerHTML = ("<h2>High Scores</h2>")
-    document.getElementById('highScore').innerHTML = savedScoresArr;
+    document.getElementById('highScore').innerHTML = objScore;
 
 
 }
@@ -187,7 +188,7 @@ var questions = [
     {
         question: 'Condition in an if/else statement is enclosed with:',
         answers: [
-            { text: 'sparenthesis', correct: true, wrong: false },
+            { text: 'parenthesis', correct: true, wrong: false },
             { text: 'curly brackets', correct: false, wrong: true },
             { text: 'quotes', correct: false, wrong: true },
             { text: 'square brackets', correct: false, wrong: true }
