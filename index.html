@@ -7,22 +7,34 @@
   </head>
   <body>
     <div class="score">
-      <p>High Score</p>
+      <p>High Score: <span id="right-answers"></span></p>
       <p>Time Remaining: <span id="timer"></span></p>
     </div>
     <!-- welcome container -->
-    <div class="container" id="welcome-container">
+    <div class="welcome" id="welcome-container">
         <h1 class="title" id="welcome-h1">Coding Quiz Challenge</h1>
-        <h2 class="subtitle" id="welcome-h2">This in a coding quiz challenge to test you coding knowledge</h2>
+        <h2 class="subtitle" id="welcome-h2">This is a coding quiz challenge to test your coding knowledge</h2>
     </div>
-    <!-- question content -->
-        <section class="questionContent" id="question-content"></section>
-        <div class="btnAnswer" id="btn-answer"></div>
+        <section class="hide" id="question-container">
+          <div class="question-container">
+            <div class="question" id="question">Question</div>
+            <form class="score-form hide" id="score-form"></form>
+              <div class="btn-grid" id="btn-answer">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+              </div>
+            </div>
+          </div> 
+       </section>
     <!-- start button -->
     <div class="btnStartContainer">
-        <button class="btn" id="btn-start">Start!</button>
-    </div>
-  <script src="assets/script/script.js"></script>
+      <button class="start-btn btn" id="btn-start">Start!</button>
+      <button class="start-btn btn hide" id="btn-next">Next!</button>
+      <button class="start-btn btn hide" id="btn-score">Next!</button>
+  </div>
+
+  <script src="./assets/script/script.js"></script>
   </body>
 </html>
-
